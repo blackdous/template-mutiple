@@ -1,0 +1,38 @@
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+span {
+  display: inline-block;
+}
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+}
+button {
+  outline: none;
+  background-color: transparent;
+  border-color: transparent;
+}
+.v-note-wrapper .v-note-op .left .op-icon,
+.v-note-wrapper .v-note-op .right .op-icon {
+  vertical-align: top;
+}

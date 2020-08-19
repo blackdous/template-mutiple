@@ -1,0 +1,133 @@
+@import "../common/var.scss";
+
+@mixin button-ghost($color) {
+  color: $color;
+  background: $--color-white;
+  // background: mix($--color-white, $color, 90%);
+  border-color: mix($--color-black, $color, 10%);
+
+  &:hover,
+  &:focus {
+    background: mix($--color-white, $color, 94%);
+    border-color: $color;
+    color: $color;
+  }
+
+  &:active {
+    background: mix($--color-black, $color, $--button-active-shade-percent);
+    border-color: mix($--color-black, $color, $--button-active-shade-percent);
+    color: $--color-white;
+    outline: none;
+  }
+
+  &.disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: mix($--color-white, $color, 40%);
+      background-color: mix($--color-white, $color, 90%);
+      border-color: mix($--color-white, $color, 80%);
+    }
+  }
+}
+
+@mixin button-link($color, $hoverColor) {
+  position: relative;
+  border-color: transparent;
+  color: $color;
+  background: transparent;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover,
+  &:focus {
+    color: mix($--color-white, $hoverColor, $--button-hover-tint-percent);
+    border-color: transparent;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  &:active {
+    color: mix($--color-black, $hoverColor, $--button-active-shade-percent);
+    border-color: transparent;
+    background-color: transparent;
+  }
+  &:after {
+    border-color: $hoverColor;
+  }
+  &.underline {
+    &:hover:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 0;
+      bottom: 0;
+      border-bottom: 1px solid $hoverColor;
+    }
+  }
+  &.disabled,
+  &.disabled:hover,
+  &.disabled:focus {
+    border-color: transparent;
+  }
+  &.disabled {
+    cursor: not-allowed;
+    background-image: none;
+    color: $--font-color-disabled-base;
+  }
+}
+@mixin button-variant ($color, $background-color, $border-color) {
+  color: $color;
+  background-color: $background-color;
+  border-color: $border-color;
+
+  &:hover,
+  &:focus {
+    background: mix($--color-white, $background-color, $--button-hover-tint-percent);
+    border-color: mix($--color-white, $border-color, $--button-hover-tint-percent);
+    color: $color;
+    // box-shadow: 0 0 0 1px mix($--color-white, $border-color, $--button-boxShoadow-shade-percent);
+  }
+  
+  &:active {
+    background: mix($--color-black, $background-color, $--button-active-shade-percent);
+    border-color: mix($--color-black, $border-color, $--button-active-shade-percent);
+    color: $color;
+    outline: none;
+  }
+
+  &.disabled {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: $--color-white;
+      background-color: mix($background-color, $--color-white);
+      border-color: mix($border-color, $--color-white);
+      cursor: not-allowed;
+      background-image: none;
+    }
+  }
+  &.ghost {
+    @include button-ghost($background-color);
+  }
+  &.link {
+    @include button-link($background-color, $background-color);
+  }
+
+}
+
+@mixin button-size($padding-vertical, $padding-horizontal, $font-size, $border-radius) {
+  padding: $padding-vertical $padding-horizontal;
+  font-size: $font-size;
+  border-radius: $border-radius;
+  &.round {
+    padding: $padding-vertical $padding-horizontal;
+  }
+  &.circle {
+    padding: $padding-vertical;
+  }
+}

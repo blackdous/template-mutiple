@@ -1,0 +1,35 @@
+{
+  "name": "vuetemplate-cli-template-spa",
+  "version": "1.0.1",
+  "description": "eslint typescript unit jest somke hot-reload",
+  "author": "blackdous",
+  "license": "MIT",
+  "scripts": {
+    "release": "standard-version"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{js,scss}": [
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "husky": "^2.7.0",
+    "lint-staged": "^10.2.11",
+    "cz-conventional-changelog": "^3.2.0",
+    "commitizen": "^4.1.2",
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-angular": "^9.1.1",
+    "standard-version": "^8.0.2"
+  }
+}

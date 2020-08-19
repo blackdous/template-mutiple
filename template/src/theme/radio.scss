@@ -1,0 +1,90 @@
+@import "mixins/mixins";
+@import "mixins/button";
+@import "common/var";
+
+@include b(radio) {
+  color: $--color-text-regular;
+  font-weight: $--font-weight-primary;
+  line-height: 1;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  outline: none;
+  font-size: $--font-size-base;
+  margin-right: 30px;
+  @include user-select(none);
+
+  @include e(container) {
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    display: inline-block;
+    line-height: 1;
+    position: relative;
+    vertical-align: middle;
+    &.disabled{
+      .hp-radio__inner {
+        background-color: $--disabled-fill-base;
+        border-color: $--border-color-light;
+        cursor: not-allowed;
+        &::after { cursor: not-allowed; background-color: $--disabled-fill-base; }
+      }
+      & + .hp-radio__label { color: $--color-text-placeholder;cursor: not-allowed; }
+      &.checked {
+        .hp-radio__inner {
+          background-color: $--disabled-fill-base;
+          border-color: $--border-color-light;
+          &::after{ background-color: $--color-text-placeholder; }
+        }
+        & + span.hp-radio__label { color: $--color-text-placeholder; cursor: not-allowed; }
+      }
+    }
+    &.checked {
+      .hp-radio__inner {
+        border-color: $--color-primary;
+        background: $--color-primary;
+        &::after { transform: translate(-50%, -50%) scale(1); }
+      }
+      & + span.hp-radio__label { color: $--color-primary; }
+    }
+    &.focus {
+      .hp-radio__inner { border-color: $--color-primary; }
+    }
+  }
+  @include e(inner) {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    border: $--border-base;
+    border-radius: $--border-radius-circle;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    background-color: $--color-white;
+    &:hover { border-color: $--color-primary; }
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 4px;
+      height: 4px;
+      background-color: $--color-white;
+      border-radius: $--border-radius-circle;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform .15s ease-in;
+    }
+  }
+  @include e(input) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    opacity: 0;
+    outline: none;
+    z-index: -1;
+  }
+}

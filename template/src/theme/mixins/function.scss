@@ -1,0 +1,11 @@
+@import './config';
+
+/** BEM support Func--------------- */
+
+// selector 转换为字符串
+@function selectoreToString($selector) {
+  $selector: inspect($selector); // inspect 返回一个字符串的表示形式，value 是一个 sass 表达式。
+  // https://sass-lang.com/documentation/modules/string#slice 裁剪字符串
+  $selector: str-slice($selector, 2, -2);
+  @return $selector;
+}

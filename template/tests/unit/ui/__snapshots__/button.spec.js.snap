@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`hpButton.vue matches snapshot 1`] = `
+<button type="button" class="hp-button hp-button--default">
+  <!---->
+  <!---->
+  <!----></button>
+`;

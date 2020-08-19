@@ -1,0 +1,88 @@
+@import 'mixins/mixins';
+@import 'common/var';
+
+@include b(radio-group) {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  font-size: 0;
+  @include e(button) {
+    .hp-radio {
+      line-height: 1;
+      white-space: nowrap;
+      vertical-align: middle;
+      background: #fff;
+      font-weight: 500;
+      -webkit-appearance: none;
+      padding: 12px 20px;
+      border-radius: $--border-radius-base;
+      border: $--border-base;
+      box-sizing: border-box;
+      margin-right: 0;
+      border-radius: 0;
+      border-left: 0;
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      .hp-radio__inner {
+        display: none;
+      }
+      &.checked {
+        border-color: $--color-primary;
+        background: $--color-white;
+        color: $--color-primary;
+        box-shadow: -1px 0 0 0 $--color-primary;
+        z-index: 1;
+        &.focus {
+          box-shadow: -1px 0 0 0 $--color-primary,
+            0 0 0 2px rgba(45, 140, 240, 0.2);
+          transition: all 0.2s ease-in-out;
+        }
+        &.disabled {
+          box-shadow: none;
+        }
+      }
+      &.disabled {
+        cursor: not-allowed;
+        border-color: $--border-color-light;
+      }
+    }
+    .hp-radio:first-child {
+      border-radius: 4px 0 0 4px;
+      border-left: 1px solid #dcdee2;
+    }
+    .hp-radio:last-child {
+      border-radius: 0 4px 4px 0;
+    }
+    .hp-radio--medium {
+      @include button-size(
+        $--button-medium-padding-vertical,
+        $--button-medium-padding-horizontal,
+        $--button-medium-font-size,
+        0
+      );
+    }
+    .hp-radio--small {
+      @include button-size(
+        $--button-small-padding-vertical,
+        $--button-small-padding-horizontal,
+        $--button-small-font-size,
+        0
+      );
+    }
+    .hp-radio--mini {
+      @include button-size(
+        $--button-mini-padding-vertical,
+        $--button-mini-padding-horizontal,
+        $--button-mini-font-size,
+        0
+      );
+    }
+  }
+  @include e(vertical) {
+    .hp-radio {
+      display: block;
+      line-height: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+  }
+}
