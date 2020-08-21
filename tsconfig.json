@@ -1,0 +1,37 @@
+// https://www.typescriptlang.org/docs/handbook/compiler-options.html#compiler-options
+{
+  "compilerOptions": {
+    // Specify ECMAScript target version
+    "target": "es5",
+    // Specify module code generation: "None", "CommonJS", "AMD", "System", "UMD", "ES6", "ES2015" or "ESNext".
+    "module": "es2015",
+    // 严格模式
+    "strict": true,
+    // Support JSX in .tsx files: "react", "preserve", "react-native". See JSX.
+    "jsx": "preserve",
+    // Import emit helpers
+    "importHelpers": true,
+    // esmodule classic node 模块机制
+    "moduleResolution": "node",
+    // 装饰器 实验性质
+    "experimentalDecorators": true,
+    // 允许 没有默认导出 export default
+    "allowSyntheticDefaultImports": true,
+    // 生成.map
+    "sourceMap": true,
+    "baseUrl": ".",
+    "types": ["node", "jest", "webpack-env"],
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "lib": ["es2015", "es2016", "es2017", "dom", "dom.iterable", "scripthost"]
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./src/**/*.vue",
+    "./tests/**/*.ts",
+    "./tests/**/*.tsx"
+  ],
+  "exclude": ["node_modules", "build", "*.scss"]
+}

@@ -3,10 +3,9 @@
  * @Author: heidous
  * @Date: 2020-07-29 11:20:14
  * @LastEditors: heidous
- * @LastEditTime: 2020-07-29 11:31:22
+ * @LastEditTime: 2020-08-20 15:51:19
  */
 const environmentStr = process.env.ENVIRONMENT;
-// console.log('environment: ', environment);
 let environment = {};
 switch (environmentStr) {
   case 'sit':

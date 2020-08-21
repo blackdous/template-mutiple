@@ -3,7 +3,7 @@
  * @Author: asyncnode
  * @Date: 2020-05-13 10:37:47
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-19 15:10:06
+ * @LastEditTime: 2020-08-21 09:26:14
 -->
 <template>
   <div id="app">
@@ -16,3 +16,9 @@ export default {
   name: 'App'
 };
 </script>
+<style lang="scss">
+  #app {
+    font-size: 16px;
+    font-weight: 500;
+  }
+</style>

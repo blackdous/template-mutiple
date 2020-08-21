@@ -3,7 +3,7 @@
  * @Author: asyncnode
  * @Date: 2020-04-21 09:16:13
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-17 11:40:32
+ * @LastEditTime: 2020-08-21 08:58:57
  */
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
     ]
   ],
   plugins: [
-    // 'transform-es2015-modules-commonjs',
+    'transform-es2015-modules-commonjs',
     // 公用代码库
     // ["@babel/plugin-transform-runtime", {
     // "corejs": 2,

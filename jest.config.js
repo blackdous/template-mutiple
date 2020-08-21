@@ -3,7 +3,7 @@
  * @Author: asyncnode
  * @Date: 2020-04-23 09:35:18
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-17 14:03:31
+ * @LastEditTime: 2020-08-21 15:55:08
  */
 
 module.exports = {
@@ -13,6 +13,7 @@ module.exports = {
     '^.+\\.vue$': 'vue-jest',
     '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$':
       'jest-transform-stub',
+    '^.+\\.tsx?$': 'ts-jest',
     '^.+\\.jsx?$': 'babel-jest'
   },
   moduleNameMapper: {
@@ -39,6 +40,7 @@ module.exports = {
     '!**/babel.config.js',
     '!**/src/main.js',
     '!**/src/registerServiceWorker.js',
+    '!**/src/currency.ts',
     '!**/src/App.vue',
     '!**/postcss.config.js'
   ],

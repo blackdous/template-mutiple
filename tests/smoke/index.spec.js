@@ -4,7 +4,7 @@
  * @Author: blackdous
  * @Date: 2020-07-23 08:09:23
  * @LastEditors: heidous
- * @LastEditTime: 2020-07-30 17:27:35
+ * @LastEditTime: 2020-08-21 15:48:23
  */
 
 // const webpack = require('webpack');
@@ -39,7 +39,6 @@ describe('smoke test', () => {
   });
   it('common test', (done) => {
     const files = glob.sync([`${distPath}/public/static/js/**.js`]);
-    console.log('files: ', files);
     let appjs = false;
     let vendorsjs = false;
     files.forEach((filePath) => {

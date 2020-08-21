@@ -17,8 +17,7 @@ const utils = require('./utils');
 const webpack = require('webpack');
 // 获取cssloader
 const tsloader = require('./loaders/tsloader');
-console.log('utils: ', utils.entries());
-// console.log('tsloader: ', tsloader);
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 threadLoader.warmup(
   {
@@ -64,6 +63,35 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: isProd
+          ? [
+              // 'thread-loader',
+              'cache-loader',
+              'babel-loader',
+              {
+                loader: 'ts-loader',
+                options: {
+                  transpileOnly: true,
+                  appendTsSuffixTo: [/\.vue$/],
+                  appendTsxSuffixTo: [/\.vue$/]
+                }
+              }
+            ]
+          : [
+              'babel-loader',
+              {
+                loader: 'ts-loader',
+                options: {
+                  transpileOnly: true,
+                  appendTsSuffixTo: [/\.vue$/],
+                  appendTsxSuffixTo: [/\.vue$/]
+                }
+              }
+            ]
+      },
       // vue-loader
       {
         test: /\.vue$/,

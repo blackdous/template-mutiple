@@ -20,7 +20,6 @@
     >
   </div>
 </template>
-{{#if tsConfig}}
 <script lang="ts">
 import {
   Component,
@@ -34,14 +33,3 @@ import HelloWorld from '@com/typescript/HelloWorld'; // @com is an alias to /com
 })
 export default class Home extends Vue {};
 </script>
-{{/if}}
-{{#unless tsConfig}}
-<script>
-import HelloWorld from '@com/HelloWorld';
-export default {
-  components: {
-    HelloWorld
-  }
-};
-</script>
-{{/unless}}

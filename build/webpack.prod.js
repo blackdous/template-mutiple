@@ -3,7 +3,7 @@
  * @Author: asyncnode
  * @Date: 2020-03-23 12:08:30
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-20 16:33:35
+ * @LastEditTime: 2020-08-21 09:23:10
  * @note: happypack/thread-loader 只用一个就可以 && TerserPlugin/HardSourceWebpackPlugin 同样
  */
 
@@ -12,7 +12,6 @@ const path = require('path');
 // webpack config合并模块
 const merge = require('webpack-merge');
 // copy静态文件插件
-// const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 // 友好报错插件模块
@@ -30,7 +29,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 // 获取cssloader
 const cssLoader = require('./loaders/cssLoader');
 
-// tree-sheaking css
+// tree-sheaking css 自己选择是否启用
 const glob = require('glob');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 // 常用工具方法
@@ -68,8 +67,6 @@ const webpackConfig = merge(baseWebpackConfig, {
               cacheDirectory: true
             }
           }
-          ,
-          'eslint-loader'
         ]
       }
     ]
@@ -236,7 +233,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       skipWaiting: true,
       sourcemap: config.environment.debug
     }),
-    new FriendlyErrorsPlugin(),
+    // new FriendlyErrorsPlugin(),
     function() {
       this.hooks.done.tap('done', (stats) => {
         if (

@@ -3,7 +3,7 @@
  * @Author: heidous
  * @Date: 2020-07-23 23:48:12
  * @LastEditors: heidous
- * @LastEditTime: 2020-07-24 14:11:46
+ * @LastEditTime: 2020-08-21 15:48:55
  */
 interface Person {
   name: string;
@@ -26,23 +26,3 @@ export const testTypescript = function() {
 export const testJest = function(firstName: string, lastName: string) {
   return 'firstName:' + firstName + 'lastName:' + lastName;
 };
-
-// 无法编译的语法
-// 无法编译的语法
-// 无法编译的语法
-
-// namespace BBB{
-//     const name = 'abc';
-// }
-
-// const enum Sex {
-//     man,
-//     woman
-// }
-
-// let p2 = {age: 18} as Person;
-// console.log(p2.name);
-// let p3 = <Person>{age: 18};
-// console.log(p3.name);
-
-// export = p3;
