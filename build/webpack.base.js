@@ -17,8 +17,7 @@ const utils = require('./utils');
 const webpack = require('webpack');
 // 获取cssloader
 const tsloader = require('./loaders/tsloader');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-
+utils.entries();
 threadLoader.warmup(
   {
     // pool options, like passed to loader options
