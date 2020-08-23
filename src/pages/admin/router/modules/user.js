@@ -3,21 +3,20 @@
  * @Author: heidous
  * @Date: 2020-07-29 08:54:38
  * @LastEditors: heidous
- * @LastEditTime: 2020-07-29 10:35:31
+ * @LastEditTime: 2020-08-23 12:57:21
  */
 const userRouter = [
   {
     name: 'UserInfo',
-    path: '/userinfo',
+    path: '/admin/userinfo',
     meta: { title: '用户信息', icon: '' },
-    component: () => import('@/pages/user/info')
+    component: () => import('@/pages/admin/views/user/info')
   },
   {
     name: 'UserDetail',
-    path: '/userdetail',
+    path: '/admin/userdetail',
     meta: { title: '用户详情', icon: '' },
-    component: () =>
-      import(/* webpackChunkName: "user" */ '@/pages/user/detail')
+    component: () => import('@/pages/admin/views/user/detail')
   }
 ];
 export default userRouter;

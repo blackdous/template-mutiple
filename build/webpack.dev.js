@@ -3,7 +3,7 @@
  * @Author: all
  * @Date: 2020-03-23 12:08:30
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-21 09:24:36
+ * @LastEditTime: 2020-08-23 17:20:29
  */
 
 // node内置path 模块
@@ -23,8 +23,10 @@ const baseWebpackConfig = require('./webpack.base');
 const config = require('../config');
 // 获取cssloader
 const cssLoader = require('./loaders/cssLoader');
-const packageConfig = require('../package.json')
-
+const packageConfig = require('../package.json');
+// 常用工具方法
+const utils = require('./utils');
+console.log('entry, htmlWebpackPlugin: ', utils.rewrites);
 const HOST = process.env.HOST;
 const PORT = process.env.PORT && Number(process.env.PORT);
 
@@ -67,6 +69,20 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   devtool: config.dev.devtool,
   // 配置devserver
   devServer: {
+    historyApiFallback: {
+      verbose: true,
+      rewrites: [
+        {
+          from: 'index',
+          to: path.posix.join('/', 'index.html')
+        },
+        {
+          from: /\/admin/,
+          to: path.posix.join('/', 'admin.html')
+        }
+      ]
+      // rewrites: utils.rewrites
+    },
     // 兼容 浏览器 没有 eslint插件
     overlay: true,
     // 日志等级
@@ -79,9 +95,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     // contentBase: false, // since we use CopyWebpackPlugin.
     compress: true,
     host: HOST || config.dev.host,
-    port: PORT || config.dev.port,
+    port: PORT || config.dev.port
     // TODO: router history模式防止刷新无效果
-    historyApiFallback: true
+    // historyApiFallback: true
     // lazy: true,
     // inline: false, // https://www.webpackjs.com/configuration/dev-server/#devserver-inline
     // proxy: {}, // http-proxy-middleware
@@ -115,21 +131,19 @@ module.exports = new Promise((resolve, reject) => {
         new FriendlyErrorsPlugin({
           compilationSuccessInfo: {
             messages: [
-              `Your application is running here: http://${
-                devWebpackConfig.devServer.host
-              }:${port}`
+              `Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`
             ]
           },
           onErrors: (severity, errors) => {
-            if (severity !== 'error') return
-            const error = errors[0]
-            const filename = error.file && error.file.split('!').pop()
+            if (severity !== 'error') return;
+            const error = errors[0];
+            const filename = error.file && error.file.split('!').pop();
             notifier.notify({
               title: packageConfig.name,
               message: severity + ': ' + error.name,
               subtitle: filename || '',
               icon: path.join(__dirname, 'logo.png')
-            })
+            });
           }
         })
       );

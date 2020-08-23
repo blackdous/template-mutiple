@@ -17,7 +17,8 @@ const utils = require('./utils');
 const webpack = require('webpack');
 // 获取cssloader
 const tsloader = require('./loaders/tsloader');
-utils.entries();
+// console.log('utils.entries(): ', utils.entries());
+// console.log('utils.htmlPlugin(): ', utils.htmlPlugin());
 threadLoader.warmup(
   {
     // pool options, like passed to loader options
@@ -29,17 +30,19 @@ threadLoader.warmup(
 // 基础 文件配置
 module.exports = {
   // noParse 用于屏蔽一些 lodash|jquery等等静态库
+  // context: false,
   context: path.resolve(__dirname, '../'),
   // https://webpack.docschina.org/concepts/mode/
   mode: 'development',
   // https://webpack.docschina.org/concepts/entry-points/
-  entry: {
-    app: './src/main.js'
-  },
+  entry: utils.entries(),
+  // entry: {
+  //   admin: './src/pages/admin/main.js'
+  // },
   // https://webpack.docschina.org/concepts/output/
   output: {
     // 输出目录
-    path: path.resolve(__dirname, '../dist'),
+    path: config.build.assetsRoot,
     publicPath: '/',
     // 文件名称
     filename: '[name].[hash].bundle.js'
@@ -165,21 +168,34 @@ module.exports = {
     new webpack.optimize.ModuleConcatenationPlugin(),
     // make sure to include the plugin for the magic
     // html 插件
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../public/index.html'),
-      filename: 'index.html',
-      inject: true,
-      minify: {
-        html5: true,
-        collapseWhitespace: true,
-        preserveLineBreaks: true,
-        minifyCSS: true,
-        minifyJS: true,
-        removeComments: !config.environment.debug
-      },
-      chunksSortMode: 'dependency'
-    })
-  ],
+    // new HtmlWebpackPlugin({
+    //   template: path.resolve(__dirname, '../src/pages/admin/admin.html'),
+    //   filename: 'admin.html',
+    //   inject: true,
+    //   minify: {
+    //     html5: true,
+    //     collapseWhitespace: true,
+    //     preserveLineBreaks: true,
+    //     minifyCSS: true,
+    //     minifyJS: true,
+    //     removeComments: !config.environment.debug
+    //   },
+    //   chunksSortMode: 'dependency'
+    // }),
+    function () {
+      this.hooks.done.tap('done', (stats) => {
+        if (
+          stats.compilation.errors &&
+          stats.compilation.errors.length &&
+          process.argv.indexOf('--watch') == -1
+        ) {
+          console.log(stats.compilation.errors);
+          process.exit(1);
+        }
+      });
+    }
+    // ],
+  ].concat(utils.htmlPlugin()),
   optimization: {
     // runtimeChunk: {
     //   name: 'runtime'

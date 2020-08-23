@@ -3,7 +3,7 @@
  * @Author: asyncnode
  * @Date: 2020-03-23 12:08:30
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-21 09:23:10
+ * @LastEditTime: 2020-08-23 17:58:09
  * @note: happypack/thread-loader 只用一个就可以 && TerserPlugin/HardSourceWebpackPlugin 同样
  */
 
@@ -228,7 +228,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-webpack-plugin.GenerateSW
     new WorkboxPlugin.GenerateSW({
       // swDest: 'sw.js',
-      cacheId: 'template-sap-cacheId',
+      cacheId: 'template-mutiple-cacheId',
       clientsClaim: true,
       skipWaiting: true,
       sourcemap: config.environment.debug

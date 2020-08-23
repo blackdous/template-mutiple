@@ -3,19 +3,18 @@
  * @Author: heidous
  * @Date: 2020-07-24 14:51:09
  * @LastEditors: heidous
- * @LastEditTime: 2020-07-29 10:41:34
+ * @LastEditTime: 2020-08-23 17:12:18
  */
 export const routesModules = require.context('./modules', true, /\.js$/);
 const routesConstant = [
   {
     name: 'Home',
-    path: '/',
+    path: '/admin',
     meta: {
       title: '首页',
       icon: ''
     },
-    component: () =>
-      import(/* WebpackPreLoad: true, webpackChunkName: "user" */ '@/pages/home')
+    component: () => import('@/pages/admin/views/home')
   }
 ];
 let routes = [];

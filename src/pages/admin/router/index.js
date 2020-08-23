@@ -3,7 +3,7 @@
  * @Author: heidous
  * @Date: 2020-07-24 14:46:43
  * @LastEditors: heidous
- * @LastEditTime: 2020-07-29 11:05:10
+ * @LastEditTime: 2020-08-23 12:15:14
  */
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -11,7 +11,7 @@ import routes from './route';
 Vue.use(Router);
 
 const router = new Router({
-  mode: 'hash', // history \ abstrct \ hash
+  mode: 'history', // history \ abstrct \ hash
   routes: routes
 });
 // * https://router.vuejs.org/api/#router-addroutes
