@@ -3,7 +3,7 @@
  * @Author: asyncnode
  * @Date: 2020-03-23 12:08:30
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-23 17:56:39
+ * @LastEditTime: 2020-08-23 18:35:21
  */
 
 import Vue from 'vue';
@@ -14,6 +14,7 @@ import registerServiceWorker from '@/registerServiceWorker';
 import { testTypescript } from '@/currency';
 import { addFunc } from '@/utils';
 import '@/asstes/scss/index.scss';
+import '@public/static/css/normalize.min.css';
 const VuexStoreRegister = require('@/plugins/vuexLazy');
 Vue.use(VuexStoreRegister);
 testTypescript();

@@ -30,7 +30,6 @@ exports.entries = function () {
     );
     map[filename] = filePath;
   });
-  // map['common-api'] = path.resolve(__dirname, '../src/common/index.js');
   return map;
 };
 

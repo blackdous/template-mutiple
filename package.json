@@ -63,7 +63,7 @@
     "hooks": {
       "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-push": "echo 提交代码前需要先进行单元测试 && npm run build && npm run smoke"
+      "pre-push": "echo 提交代码前需要先进行单元测试 && npm run smoke"
     }
   },
   "lint-staged": {

@@ -3,7 +3,7 @@
  * @Author: asyncnode
  * @Date: 2020-03-23 12:08:30
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-23 17:58:09
+ * @LastEditTime: 2020-08-23 18:46:20
  * @note: happypack/thread-loader 只用一个就可以 && TerserPlugin/HardSourceWebpackPlugin 同样
  */
 
@@ -222,7 +222,9 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     // 坑太多了 css tree-shaking
     new PurgecssPlugin({
-      paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`, { nodir: true })
+      paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`, {
+        nodir: true
+      })
       // content: [`./public/**/*.html`, `./src/**/*.vue`],
     }),
     // https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-webpack-plugin.GenerateSW
