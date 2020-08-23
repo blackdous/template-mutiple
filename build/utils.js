@@ -3,7 +3,7 @@
  * @Author: all
  * @Date: 2020-07-16 17:42:42
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-23 17:42:42
+ * @LastEditTime: 2020-08-23 21:52:57
  */
 
 const path = require('path');
@@ -17,11 +17,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 var PAGE_PATH = path.resolve(__dirname, '../src/pages');
 // 用于做相应的merge处理
 var merge = require('webpack-merge');
+// 获取参数
+let argv = require('yargs').argv;
+console.log('argv: ', argv.PAGENAME);
+
 //多入口配置
 // 通过glob模块读取pages文件夹下的所有对应文件夹下的js后缀文件，如果该文件存在
 // 那么就作为入口处理
 exports.entries = function () {
   var entryFiles = glob.sync(PAGE_PATH + '/*/*.js');
+  if (argv.PAGENAME) {
+    entryFiles = entryFiles.filter((filePath) => {
+      var filename = filePath.substring(
+        filePath.lastIndexOf('/') + 1,
+        filePath.lastIndexOf('.')
+      );
+      return filename === argv.PAGENAME;
+    });
+  }
   var map = {};
   entryFiles.forEach((filePath) => {
     var filename = filePath.substring(
@@ -39,6 +52,15 @@ const rewrites = [];
 // 与上面的多页面入口配置相同，读取pages文件夹下的对应的html后缀文件，然后放入数组中
 exports.htmlPlugin = function () {
   let entryHtml = glob.sync(PAGE_PATH + '/*/*.html');
+  if (argv.PAGENAME) {
+    entryHtml = entryHtml.filter((filePath) => {
+      var filename = filePath.substring(
+        filePath.lastIndexOf('/') + 1,
+        filePath.lastIndexOf('.')
+      );
+      return filename === argv.PAGENAME;
+    });
+  }
   let arr = [];
   let htmlNameList = entryHtml.map((filePath) => {
     return filePath.substring(
@@ -46,7 +68,7 @@ exports.htmlPlugin = function () {
       filePath.lastIndexOf('.')
     );
   });
-  console.log('htmlNameList: ', htmlNameList);
+  // console.log('htmlNameList: ', htmlNameList);
   entryHtml.forEach((filePath) => {
     let filename = filePath.substring(
       filePath.lastIndexOf('/') + 1,
@@ -66,8 +88,9 @@ exports.htmlPlugin = function () {
     };
     // history模式下 页面指向修改
     let rewrite = {
-      from: new RegExp(`^\/${filename}\/.*$`),
-      to: filename + '.html'
+      // /\/admin/
+      from: new RegExp(`\/${filename}`),
+      to: path.posix.join('/', `${filename}.html`)
       // to: filePath
     };
     rewrites.push(rewrite);

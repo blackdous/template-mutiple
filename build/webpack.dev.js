@@ -3,7 +3,7 @@
  * @Author: all
  * @Date: 2020-03-23 12:08:30
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-23 17:20:29
+ * @LastEditTime: 2020-08-23 20:08:58
  */
 
 // node内置path 模块
@@ -71,17 +71,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   devServer: {
     historyApiFallback: {
       verbose: true,
-      rewrites: [
-        {
-          from: 'index',
-          to: path.posix.join('/', 'index.html')
-        },
-        {
-          from: /\/admin/,
-          to: path.posix.join('/', 'admin.html')
-        }
-      ]
-      // rewrites: utils.rewrites
+      rewrites: utils.rewrites
     },
     // 兼容 浏览器 没有 eslint插件
     overlay: true,

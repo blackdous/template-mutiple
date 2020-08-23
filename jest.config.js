@@ -3,7 +3,7 @@
  * @Author: asyncnode
  * @Date: 2020-04-23 09:35:18
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-21 15:55:08
+ * @LastEditTime: 2020-08-23 19:31:03
  */
 
 module.exports = {
@@ -46,10 +46,10 @@ module.exports = {
   ],
   coverageThreshold: {
     global: {
-      branches: 5,
-      functions: 5,
-      lines: 5,
-      statements: 5
+      branches: 0,
+      functions: 0,
+      lines: 0,
+      statements: 0
     }
   }
 };

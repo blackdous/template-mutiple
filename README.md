@@ -1,13 +1,23 @@
-## vue-teamplete-cli(SAP)
-
-webpack-sap-vue
+## vueteamplete-cli(mutiple)
 
 feature-list:
 
-// !! babel-core 为了 兼容 jest can't find babel-core
+- 如果想独立页面发布请自己判断配置
+
+vue-mutiple
+
+hashList:
+
+- npm run dev || yarn dev 启动多页面
+- npm run dev -- --PAGENAME=admin 启动 admin 页面 要通过映射路径/admin 才能访问（因为 router 为 history）
+- npm run build -- --PAGENAME=index 只打包 index 页面
+- npm run build || yarn build 正式环境打包
+- npm run build -- --ENVIRONMENT=sit || npm run build -- --ENVIRONMENT=uat || npm run build -- --ENVIRONMENT=pre 打不同环境的包
+- npm run build -- --PAGENAME=admin
 
 TODOLIST:
 
+- 支持多页面 但是文件目录要与示例一致
 - npm run dev or yarn dev 本地开发 ✅
 - npm run build or yarn build 打包配置 ✅
   - 分环境打包 build:sit、build:uat、build:pre、build:prod 环境 ✅

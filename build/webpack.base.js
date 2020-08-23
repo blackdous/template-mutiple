@@ -2,8 +2,6 @@
 const path = require('path');
 const config = require('../config');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-// html输出配置
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 // webpack进度条
 var ProgressBarPlugin = require('progress-bar-webpack-plugin');
 // copy静态文件插件
@@ -167,22 +165,6 @@ module.exports = {
       }
     ]),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    // make sure to include the plugin for the magic
-    // html 插件
-    // new HtmlWebpackPlugin({
-    //   template: path.resolve(__dirname, '../src/pages/admin/admin.html'),
-    //   filename: 'admin.html',
-    //   inject: true,
-    //   minify: {
-    //     html5: true,
-    //     collapseWhitespace: true,
-    //     preserveLineBreaks: true,
-    //     minifyCSS: true,
-    //     minifyJS: true,
-    //     removeComments: !config.environment.debug
-    //   },
-    //   chunksSortMode: 'dependency'
-    // }),
     function () {
       this.hooks.done.tap('done', (stats) => {
         if (
