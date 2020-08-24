@@ -1,9 +1,9 @@
 /*
- * @Descripttion: test currency
+ * @Descripttion: 
  * @Author: heidous
- * @Date: 2020-07-23 23:48:12
+ * @Date: 2020-08-24 17:13:57
  * @LastEditors: heidous
- * @LastEditTime: 2020-07-24 14:11:46
+ * @LastEditTime: 2020-08-24 18:15:04
  */
 interface Person {
   name: string;
