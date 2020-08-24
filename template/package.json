@@ -94,7 +94,7 @@
   },
   {{/commitLint}}
   "devDependencies": {
-    {#commitLint}}
+    {{#commitLint}}
     "husky": "^2.7.0",
     "lint-staged": "^10.2.11",
     "cz-conventional-changelog": "^3.2.0",
