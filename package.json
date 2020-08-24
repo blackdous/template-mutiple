@@ -1,8 +1,9 @@
 {
-  "name": "vuetemplate-cli-template-spa",
-  "version": "1.0.1",
-  "description": "eslint typescript unit jest somke hot-reload",
+  "name": "vuetemplates-mutiple",
+  "version": "1.0.0",
+  "description": "This is a vue-template-mutiple use eslint typescript unit jest somke hot-reload",
   "author": "blackdous",
+  "keywords": ["vue", "template", "vue-template", "vue-mutiple", "vue-template-mutiple"],
   "license": "MIT",
   "scripts": {
     "release": "standard-version"

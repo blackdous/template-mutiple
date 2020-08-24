@@ -16,11 +16,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const utils = require('./utils');
 const webpack = require('webpack');
 // 获取cssloader
-const tsloader = require('./loaders/tsloader');
-{{#tslintConfig}}
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-{{/tslintConfig}}
-// console.log('tsloader: ', tsloader);
+// const tsloader = require('./loaders/tsloader');
 
 threadLoader.warmup(
   {
@@ -37,9 +33,7 @@ module.exports = {
   // https://webpack.docschina.org/concepts/mode/
   mode: 'development',
   // https://webpack.docschina.org/concepts/entry-points/
-  entry: {
-    app: './src/main.js'
-  },
+  entry: utils.entries(),
   // https://webpack.docschina.org/concepts/output/
   output: {
     // 输出目录
@@ -168,32 +162,8 @@ module.exports = {
         ignore: ['.*']
       }
     ]),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    // make sure to include the plugin for the magic
-    {{#tslintConfig}}
-    // 配合vue-loader使用
-    new ForkTsCheckerWebpackPlugin({
-      eslint: {
-        files: './src/**/*.{ts,tsx,js,jsx}' // required - same as command `eslint ./src/**/*.{ts,tsx,js,jsx} --ext .ts,.tsx,.js,.jsx`
-      }
-    }),
-    {{/tslintConfig}}
-    // html 插件
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../public/index.html'),
-      filename: 'index.html',
-      inject: true,
-      minify: {
-        html5: true,
-        collapseWhitespace: true,
-        preserveLineBreaks: true,
-        minifyCSS: true,
-        minifyJS: true,
-        removeComments: !config.environment.debug
-      },
-      chunksSortMode: 'dependency'
-    })
-  ],
+    new webpack.optimize.ModuleConcatenationPlugin()
+  ].concat(utils.htmlPlugin()),
   optimization: {
     // runtimeChunk: {
     //   name: 'runtime'

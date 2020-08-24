@@ -1,11 +1,3 @@
-/*
- * @Descripttion: eslint.config.js
- * @Author: asyncnode
- * @Date: 2020-03-23 12:08:30
- * @LastEditors: heidous
- * @LastEditTime: 2020-08-16 19:39:06
- */
-
 // https://eslint.org/docs/user-guide/configuring
 
 module.exports = {

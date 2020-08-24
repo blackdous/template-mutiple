@@ -3,13 +3,12 @@
  * @Author: asyncnode
  * @Date: 2020-03-23 12:08:30
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-17 14:25:46
+ * @LastEditTime: 2020-08-24 18:12:12
  * @note: happypack/thread-loader 只用一个就可以 && TerserPlugin/HardSourceWebpackPlugin 同样
  */
 
 // node内置path 模块
 const path = require('path');
-// const glob = require('glob');
 // webpack config合并模块
 const merge = require('webpack-merge');
 // copy静态文件插件
@@ -34,7 +33,8 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 const cssLoader = require('./loaders/cssLoader');
 
 // tree-sheaking css
-// const PurgecssPlugin = require('purgecss-webpack-plugin');
+const glob = require('glob');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
 // 常用工具方法
 const utils = require('./utils');
 // // 硬盘缓存
@@ -228,10 +228,12 @@ const webpackConfig = merge(baseWebpackConfig, {
       cssProcessor: require('cssnano')
     }),
     // 坑太多了 css tree-shaking
-    // new PurgecssPlugin({
-    //   paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`, { nodir: true })
-    //   // content: [`./public/**/*.html`, `./src/**/*.vue`],
-    // }),
+    new PurgecssPlugin({
+      paths: glob.sync(`${path.join(__dirname, 'src')}/**/*`, {
+        nodir: true
+      })
+      // content: [`./public/**/*.html`, `./src/**/*.vue`],
+    }),
     {{#pwa}}
     // https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-webpack-plugin.GenerateSW
     new WorkboxPlugin.GenerateSW({
@@ -242,7 +244,6 @@ const webpackConfig = merge(baseWebpackConfig, {
       sourcemap: config.environment.debug
     }),
     {{/pwa}}
-    new FriendlyErrorsPlugin(),
     function() {
       this.hooks.done.tap('done', (stats) => {
         if (

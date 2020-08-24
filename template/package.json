@@ -5,25 +5,21 @@
   "scripts": {
     {{#unit}}
     {{#if_eq runner "jest"}}
-    "test": "jest",
+    "test": "npm run build && jest",
     {{/if_eq}}
     {{#somke}}
-    "smoke": "jest --collectCoverage=false ./tests/smoke/*.spec.js",
+    "smoke": "npm run build && jest --collectCoverage=false ./tests/smoke/*.spec.js",
     {{/somke}}
     {{/unit}}
     {{#commitLint}}
-    "release": "npm run build && npm run smoke && standard-version",
+    "release": "npm run test && standard-version",
     {{/commitLint}}
     {{#eslint}}
-    "lint": "eslint --ext .js --ext .vue src",
+    "lint": "eslint --cache --ext .js --ext .vue src",
     {{/eslint}}
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.js",
     "start": "cross-env npm run build && cross-env node build/webpack.start.js",
     "build": "cross-env NODE_ENV=production ENVIRONMENT=prod webpack --config ./build/webpack.prod.js",
-    "build:prod": "cross-env NODE_ENV=production ENVIRONMENT=prod webpack --config ./build/webpack.prod.js",
-    "build:sit": "cross-env NODE_ENV=production ENVIRONMENT=sit webpack --config ./build/webpack.prod.js",
-    "build:uat": "cross-env NODE_ENV=production ENVIRONMENT=uat webpack --config ./build/webpack.prod.js",
-    "build:pre": "cross-env NODE_ENV=production ENVIRONMENT=pre webpack --config ./build/webpack.prod.js",
     "analyzer": "cross-env NODE_ENV=production webpack --config ./build/webpack.analyzer.js"
   },
   "repository": {
@@ -46,12 +42,20 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
+    {{#vuex}}
+    "vuex": "^3.5.1",
+    {{/vuex}}
+    {{#router}}
+    "vue-router": "^3.3.4",
+    {{/router}}
     {{#tsConfig}}
     "typescript": "^3.9.7",
     "ts-loader": "^8.0.1",
     "ts-jest": "^26.1.3",
     "@types/jest": "^26.0.5",
     "@types/webpack-env": "^1.15.2",
+    "vue-property-decorator": "^9.0.0",
+    "vue-class-component": "^7.2.4",
     {{/tsConfig}}
     {{#tslintConfig}}
     "fork-ts-checker-webpack-plugin": "^5.0.9",
@@ -66,27 +70,21 @@
     "html-webpack-plugin": "^3.2.0",
     "koa-bodyparser": "^4.3.0",
     "thread-loader": "^2.1.3",
-    "vue": "^2.6.10",
-    "webpack": "^4.44.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^4.2.2",
-    "workbox-webpack-plugin": "^5.1.1"
+    "vue": "^2.6.10"
   },
   {{#commitLint}}
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-push": "echo 提交代码前需要先进行单元测试 && npm run test"
+      "pre-push": "echo 提交代码前需要先进行单元测试 && npm run smoke"
     }
   },
   "lint-staged": {
-    "*.{js,scss}": [
+    "*.{js,vue}": [
       {{#eslint}}
-      "npm run lint",
+      "npm run lint"
       {{/eslint}}
-      "git add"
     ]
   },
   "config": {
@@ -96,7 +94,7 @@
   },
   {{/commitLint}}
   "devDependencies": {
-    {{#commitLint}}
+    {#commitLint}}
     "husky": "^2.7.0",
     "lint-staged": "^10.2.11",
     "cz-conventional-changelog": "^3.2.0",
@@ -167,14 +165,16 @@
     "stylus-loader": "^3.0.2",
     "terser-webpack-plugin": "^3.0.6",
     "url-loader": "^2.1.0",
-    "vue-class-component": "^7.2.4",
     "vue-loader": "^15.7.1",
-    "vue-property-decorator": "^9.0.0",
-    "vue-router": "^3.3.4",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.11",
-    "vuex": "^3.5.1",
-    "webpack-bundle-analyzer": "^3.8.0"
+    "webpack-bundle-analyzer": "^3.8.0",
+    "yargs": "^15.4.1",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2",
+    "workbox-webpack-plugin": "^5.1.1"
   },
   "engines": {
     "node": ">= 6.0.0",

@@ -3,7 +3,7 @@
  * @Author: all
  * @Date: 2020-03-23 12:08:30
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-19 14:35:42
+ * @LastEditTime: 2020-08-24 18:09:34
  */
 
 // node内置path 模块
@@ -16,6 +16,9 @@ const portfinder = require('portfinder');
 // 友好报错插件模块
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const notifier = require('node-notifier');
+{{#tslintConfig}}
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+{{/tslintConfig}}
 // 基础配置
 const baseWebpackConfig = require('./webpack.base');
 // 全局配置
@@ -68,6 +71,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   devtool: config.dev.devtool,
   // 配置devserver
   devServer: {
+    historyApiFallback: {
+      verbose: true,
+      rewrites: utils.rewrites
+    },
     // 兼容 浏览器 没有 eslint插件
     overlay: true,
     // 日志等级
@@ -91,6 +98,16 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin()
+    // make sure to include the plugin for the magic
+    {{#tslintConfig}}
+    ,
+    // 配合vue-loader使用
+    new ForkTsCheckerWebpackPlugin({
+      eslint: {
+        files: './src/**/*.{ts,tsx,js,jsx}' // required - same as command `eslint ./src/**/*.{ts,tsx,js,jsx} --ext .ts,.tsx,.js,.jsx`
+      }
+    })
+    {{/tslintConfig}}
   ]
 });
 // module.exports = devWebpackConfig;

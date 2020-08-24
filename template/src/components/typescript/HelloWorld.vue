@@ -1,15 +1,7 @@
-<!--
- * @Descripttion: HelloWorld.vue
- * @Author: heidous
- * @Date: 2020-07-23 23:57:38
- * @LastEditors: heidous
- * @LastEditTime: 2020-07-24 10:14:30
--->
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Vuex</h2>
-    <!-- <router-link to="/vuex">ShoppingCart Example</router-link> -->
   </div>
 </template>
 
@@ -23,13 +15,11 @@ export default Vue.extend({
     };
   },
   mounted() {
-    this.hello();
-    const a = '11';
-    console.log('a: ', a);
+    this.hello();   
   },
   methods: {
     hello() {
-      // console.log('Hello world')
+      console.log('Hello world')
     }
   }
 });
