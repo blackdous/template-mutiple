@@ -1,10 +1,3 @@
-/*
- * @Descripttion:
- * @Author: heidous
- * @Date: 2020-08-13 18:02:34
- * @LastEditors: heidous
- * @LastEditTime: 2020-08-13 23:39:15
- */
 const path = require('path');
 const fs = require('fs');
 const spawn = require('child_process').spawn;
