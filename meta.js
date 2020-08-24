@@ -3,7 +3,7 @@
  * @Author: heidous
  * @Date: 2020-08-13 22:48:07
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-18 11:28:42
+ * @LastEditTime: 2020-08-24 23:28:06
  */
 const path = require('path');
 const fs = require('fs');
@@ -130,7 +130,7 @@ module.exports = {
     smoke: {
       when: 'isNotTest && unit',
       type: 'confirm',
-      message: 'Set up somke unit'
+      message: 'Set up smoke unit'
     },
     commitLint: {
       when: 'isNotTest',
@@ -145,38 +145,41 @@ module.exports = {
   },
   filters: {
     'tsconfig.json': 'tsConfig',
-    'tslint.json': 'tslintConfig',
+    'src/currency.ts': 'tsConfig',
+    'src/components/typescript/**/*': 'tsConfig',
+    'src/components/HelloWorld.vue': '!tsConfig',
+    'tslint.json': 'tsConfig && tslintConfig',
     'src/registerServiceWorker.js': 'pwa',
     'commitlint.config.js': 'commitLint',
     'tests/unit/**/*': 'unit',
     'tests/unit/typescript/**/*': 'unit && tsConfig',
     'jest.config.js': "unit && runner === 'jest'",
-    'tests/unit/somke/**/*': "unit && runner === 'jest' && smoke",
+    'tests/unit/smoke/**/*': "unit && runner === 'jest' && smoke",
     '.eslintrc.js': 'eslint',
     '.eslintignore': 'eslint',
-    'src/router/**/*': 'router',
-    'src/store/**/*': 'vuex'
+    'src/**/router/**/*': 'router',
+    'src/**/store/**/*': 'vuex'
   },
   complete: function(data, { chalk }) {
-    const green = chalk.green
+    const green = chalk.green;
 
-    sortDependencies(data, green)
+    sortDependencies(data, green);
 
-    const cwd = path.join(process.cwd(), data.inPlace ? '' : data.destDirName)
+    const cwd = path.join(process.cwd(), data.inPlace ? '' : data.destDirName);
 
     if (data.autoInstall) {
       installDependencies(cwd, data.autoInstall, green)
         .then(() => {
-          return runLintFix(cwd, data, green)
+          return runLintFix(cwd, data, green);
         })
         .then(() => {
-          printMessage(data, green)
+          printMessage(data, green);
         })
-        .catch(e => {
-          console.log(chalk.red('Error:'), e)
-        })
+        .catch((e) => {
+          console.log(chalk.red('Error:'), e);
+        });
     } else {
-      printMessage(data, chalk)
+      printMessage(data, chalk);
     }
   }
 };
