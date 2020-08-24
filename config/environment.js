@@ -3,7 +3,7 @@
  * @Author: heidous
  * @Date: 2020-07-29 11:20:14
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-23 22:09:05
+ * @LastEditTime: 2020-08-24 11:55:59
  */
 const argv = require('yargs').argv;
 const environmentStr = argv.ENVIRONMENT || process.env.ENVIRONMENT;
@@ -35,7 +35,6 @@ switch (environmentStr) {
     };
     break;
   default:
-    console.log(111);
     environment = {
       fetchUrl: 'http://www.google.com/prod',
       debug: false

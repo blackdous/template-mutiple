@@ -14,9 +14,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const utils = require('./utils');
 const webpack = require('webpack');
 // 获取cssloader
-const tsloader = require('./loaders/tsloader');
-// console.log('utils.entries(): ', utils.entries());
-// console.log('utils.htmlPlugin(): ', utils.htmlPlugin());
+// const tsloader = require('./loaders/tsloader');
 threadLoader.warmup(
   {
     // pool options, like passed to loader options

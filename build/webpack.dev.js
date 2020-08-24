@@ -3,7 +3,7 @@
  * @Author: all
  * @Date: 2020-03-23 12:08:30
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-23 20:08:58
+ * @LastEditTime: 2020-08-24 11:56:49
  */
 
 // node内置path 模块
@@ -26,7 +26,7 @@ const cssLoader = require('./loaders/cssLoader');
 const packageConfig = require('../package.json');
 // 常用工具方法
 const utils = require('./utils');
-console.log('entry, htmlWebpackPlugin: ', utils.rewrites);
+// console.log('entry, htmlWebpackPlugin: ', utils.rewrites);
 const HOST = process.env.HOST;
 const PORT = process.env.PORT && Number(process.env.PORT);
 

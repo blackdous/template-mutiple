@@ -3,7 +3,7 @@
  * @Author: all
  * @Date: 2020-07-16 17:42:42
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-23 21:52:57
+ * @LastEditTime: 2020-08-24 11:56:16
  */
 
 const path = require('path');
@@ -19,7 +19,6 @@ var PAGE_PATH = path.resolve(__dirname, '../src/pages');
 var merge = require('webpack-merge');
 // 获取参数
 let argv = require('yargs').argv;
-console.log('argv: ', argv.PAGENAME);
 
 //多入口配置
 // 通过glob模块读取pages文件夹下的所有对应文件夹下的js后缀文件，如果该文件存在
