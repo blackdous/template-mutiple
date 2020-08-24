@@ -3,7 +3,7 @@
  * @Author: heidous
  * @Date: 2020-08-13 22:48:07
  * @LastEditors: heidous
- * @LastEditTime: 2020-08-24 23:28:06
+ * @LastEditTime: 2020-08-24 23:36:55
  */
 const path = require('path');
 const fs = require('fs');
@@ -159,27 +159,5 @@ module.exports = {
     '.eslintignore': 'eslint',
     'src/**/router/**/*': 'router',
     'src/**/store/**/*': 'vuex'
-  },
-  complete: function(data, { chalk }) {
-    const green = chalk.green;
-
-    sortDependencies(data, green);
-
-    const cwd = path.join(process.cwd(), data.inPlace ? '' : data.destDirName);
-
-    if (data.autoInstall) {
-      installDependencies(cwd, data.autoInstall, green)
-        .then(() => {
-          return runLintFix(cwd, data, green);
-        })
-        .then(() => {
-          printMessage(data, green);
-        })
-        .catch((e) => {
-          console.log(chalk.red('Error:'), e);
-        });
-    } else {
-      printMessage(data, chalk);
-    }
   }
 };
