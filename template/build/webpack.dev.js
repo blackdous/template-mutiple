@@ -64,6 +64,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   devtool: config.dev.devtool,
   // 配置devserver
   devServer: {
+        // TODO: router history模式防止刷新无效果
     historyApiFallback: {
       verbose: true,
       rewrites: utils.rewrites
@@ -80,9 +81,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     // contentBase: false, // since we use CopyWebpackPlugin.
     compress: true,
     host: HOST || config.dev.host,
-    port: PORT || config.dev.port,
-    // TODO: router history模式防止刷新无效果
-    historyApiFallback: true
+    port: PORT || config.dev.port
     // lazy: true,
     // inline: false, // https://www.webpackjs.com/configuration/dev-server/#devserver-inline
     // proxy: {}, // http-proxy-middleware
