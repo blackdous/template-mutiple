@@ -1,10 +1,3 @@
-<!--
- * @Descripttion: Home.vue
- * @Author: heidous
- * @Date: 2020-07-23 23:54:09
- * @LastEditors: heidous
- * @LastEditTime: 2020-08-23 17:23:54
--->
 <template>
   <div class="home">
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />

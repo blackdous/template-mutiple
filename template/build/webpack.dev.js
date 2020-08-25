@@ -18,7 +18,8 @@ const config = require('../config');
 // 获取cssloader
 const cssLoader = require('./loaders/cssLoader');
 const packageConfig = require('../package.json')
-
+// 常用工具方法
+const utils = require('./utils');
 const HOST = process.env.HOST;
 const PORT = process.env.PORT && Number(process.env.PORT);
 
