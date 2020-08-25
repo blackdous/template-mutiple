@@ -1,11 +1,3 @@
-/*
- * @Descripttion: dev.js local webpack options
- * @Author: all
- * @Date: 2020-03-23 12:08:30
- * @LastEditors: heidous
- * @LastEditTime: 2020-08-24 18:09:34
- */
-
 // node内置path 模块
 const path = require('path');
 // webpack模块

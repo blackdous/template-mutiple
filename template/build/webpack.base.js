@@ -2,8 +2,6 @@
 const path = require('path');
 const config = require('../config');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-// html输出配置
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 // webpack进度条
 var ProgressBarPlugin = require('progress-bar-webpack-plugin');
 // copy静态文件插件

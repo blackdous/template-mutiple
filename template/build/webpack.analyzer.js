@@ -1,10 +1,3 @@
-/*
- * @Descripttion: analyzer build 分析打包
- * @Author: all
- * @Date: 2020-07-16 16:18:39
- * @LastEditors: all
- * @LastEditTime: 2020-07-16 16:34:50
- */ 
 // 包分析插件
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 // 打包过程中消耗的时间进行精确的统计

@@ -1,11 +1,3 @@
-/*
- * @Descripttion: npm run build && npm run start 运行打包好的代码
- * @Author: all
- * @Date: 2020-07-16 18:19:30
- * @LastEditors: all
- * @LastEditTime: 2020-07-17 10:44:43
- */
-
 const Koa = require('koa');
 const app = new Koa();
 const Router = require('koa-router');

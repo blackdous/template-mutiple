@@ -1,11 +1,3 @@
-/*
- * @Descripttion: sass/less/stylus/css/postcss 浏览器配置
- * @Author: all
- * @Date: 2020-07-16 09:18:20
- * @LastEditors: all
- * @LastEditTime: 2020-07-16 17:58:15
- */
-
 //  css压缩提取插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');

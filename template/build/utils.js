@@ -1,10 +1,3 @@
-/*
- * @Descripttion: utils
- * @Author: all
- * @Date: 2020-07-16 17:42:42
- * @LastEditors: heidous
- * @LastEditTime: 2020-08-24 18:05:28
- */ 
 const path = require('path');
 const config = require('../config');
 
