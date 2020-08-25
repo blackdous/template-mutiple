@@ -49,6 +49,7 @@ module.exports = {
       // 引入vue-conplier
       vue$: 'vue/dist/vue.esm.js',
       '@': utils.resolve('src'),
+      '@public': utils.resolve('public'),
       '@page': utils.resolve('src/pages'),
       '@com': utils.resolve('src/components'),
       '@examples': utils.resolve('src/examples'),

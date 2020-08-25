@@ -14,9 +14,9 @@ module.exports = {
     ]
   ],
   plugins: [
-    {{#tsConfig}}
+    {{#if_eq runner "jest"}}
     'transform-es2015-modules-commonjs',
-    {{/tsConfig}}
+    {{/if_eq}}
     // 公用代码库
     // ["@babel/plugin-transform-runtime", {
     // "corejs": 2,
